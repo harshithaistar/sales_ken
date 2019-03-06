@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'notification.dart';
+import 'package:sales_ken/call.dart';
 
 void main() => runApp(new MyApp());
 
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: new NotifcationScreen(),
+      home: new CallPage(),
     );
   }
 }

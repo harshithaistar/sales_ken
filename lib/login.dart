@@ -50,8 +50,6 @@ class _LoginState extends State<Login> {
           onTap: () => print('hello'),
           child: new Container(
             margin: EdgeInsets.all(20.0),
-
-            //width: 100.0,
             height: 50.0,
             decoration: new BoxDecoration(
               color: Colors.redAccent,

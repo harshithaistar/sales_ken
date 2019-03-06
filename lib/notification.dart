@@ -41,7 +41,6 @@ class _NotifcationScreenState extends State<NotifcationScreen> {
       leading: Image.network(randomNotifications[i].fromPersonImageUrl),
       title: Text(randomNotifications[i].displayMessage),
       subtitle: Text(randomNotifications[i].date),
-      //trailing: Text(randomNotifications[i].duration),
     );
     return card;
   }

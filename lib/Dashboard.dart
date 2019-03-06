@@ -45,7 +45,6 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Icon(Icons.more_vert),
             ),
           ],
-          //backgroundColor: Colors.none,
         ),
         body: getCallsListBody(),
         floatingActionButton: new FloatingActionButton(
