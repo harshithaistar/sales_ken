@@ -11,17 +11,17 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: new MyHomePage(),
+      home: new MyDashboardPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyDashboardPage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _MyDashboardPageState createState() => new _MyDashboardPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyDashboardPageState extends State<MyDashboardPage> {
   List<Task> randomTasks;
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,17 @@ class _MyHomePageState extends State<MyHomePage> {
           actions: <Widget>[
             Padding(
               padding: const EdgeInsets.only(right: 20.0),
-              child: Icon(Icons.notifications),
+              child: IconButton(
+                  icon: Icon(Icons.notifications),
+
+                  //its used to route the notification page from the notification icon click.
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => NotifcationScreen()),
+                    );
+                  }),
             ),
             new Padding(
               padding: const EdgeInsets.only(right: 16.0),
@@ -132,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         randomTasks[i].date + "    " + randomTasks[i].time,
                         style: TextStyle(
                             color: Colors.black45, fontWeight: FontWeight.w500),
-                      )
+                      ),
                     ],
                   ),
                   Text(
@@ -148,12 +158,51 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
-    /*var card = ListTile(
-      leading: Icon(Icons.call),
-      title: Text(randomTasks[i].caller),
-      subtitle: Text(randomTasks[i].calleeName),
-      trailing: Text(randomTasks[i].duration),
-      );*/
+    return card;
+  }
+}
+
+class NotifcationScreen extends StatelessWidget {
+  List<Notify> randomNotifications;
+  @override
+  Widget build(BuildContext context) {
+    randomNotifications = Notify.getRandomNotify(40);
+    return new Scaffold(
+      appBar: new AppBar(
+        leading: new IconButton(
+          icon: new Icon(Icons.arrow_back_ios, color: Colors.white),
+          onPressed: () => Navigator.of(context)
+              .pop(), //This used to go back to the previous page
+        ),
+        title: new Text(
+          "Notifications",
+          style: TextStyle(
+              color: Colors.white, fontSize: 22.0, fontWeight: FontWeight.w600),
+        ),
+      ),
+      body: getCallsListBody(),
+    );
+  }
+
+  Widget getCallsListBody() {
+    var list = ListView.separated(
+      padding: EdgeInsets.all(8.0),
+      itemCount: randomNotifications.length,
+      separatorBuilder: (BuildContext context, int index) => Divider(),
+      itemBuilder: (BuildContext context, int index) {
+        return getCallCard(index);
+      },
+    );
+
+    return list;
+  }
+
+  Widget getCallCard(int i) {
+    var card = ListTile(
+      leading: Image.network(randomNotifications[i].fromPersonImageUrl),
+      title: Text(randomNotifications[i].displayMessage),
+      subtitle: Text(randomNotifications[i].date),
+    );
     return card;
   }
 }

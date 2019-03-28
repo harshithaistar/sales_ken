@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sales_ken/call.dart';
+import 'sample.dart';
 
 void main() => runApp(new MyApp());
 
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: new CallPage(),
+      home: new MyHomePage(),
     );
   }
 }
